@@ -1,0 +1,6 @@
+Name: DiffieHellman
+Description: DiffieHellman
+Version: 0.1
+
+Requires: 
+Libs: -r:@expanded_libdir@/@PACKAGE@/DiffieHellman.dll
