@@ -1,6 +1,6 @@
-Name: DiffieHellman
-Description: DiffieHellman
-Version: 0.1
+Name: @ASSEMBLY_TITLE@
+Description: @ASSEMBLY_DESCRIPTION@
+Version: @ASSEMBLY_VERSION@
 
 Requires: 
-Libs: -r:@expanded_libdir@/@PACKAGE@/DiffieHellman.dll
+Libs: -r:@libdir@/@ASSEMBLY_PACKAGE@/DiffieHellman.dll

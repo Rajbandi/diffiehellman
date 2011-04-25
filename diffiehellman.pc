@@ -1,6 +1,6 @@
 Name: DiffieHellman
-Description: DiffieHellman
-Version: 0.1
+Description: Diffie-Hellman implementation for .NET
+Version: 1.0.0.0
 
 Requires: 
-Libs: -r:/usr/local/lib/diffiehellman/DiffieHellman.dll
+Libs: -r:${exec_prefix}/lib/DiffieHellman/DiffieHellman.dll
