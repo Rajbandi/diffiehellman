@@ -3,4 +3,4 @@ Description: Diffie-Hellman implementation for .NET
 Version: 1.0.0.0
 
 Requires: 
-Libs: -r:${exec_prefix}/lib/DiffieHellman/DiffieHellman.dll
+Libs: -r:${exec_prefix}/lib/mono/DiffieHellman/DiffieHellman.dll
