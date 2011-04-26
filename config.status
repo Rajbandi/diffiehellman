@@ -592,6 +592,10 @@ echo 'BEGIN {' >"$tmp/subs1.awk" &&
 cat >>"$tmp/subs1.awk" <<\_ACAWK &&
 S["LTLIBOBJS"]=""
 S["LIBOBJS"]=""
+S["MONO_LIBS"]=" "
+S["MONO_CFLAGS"]=" "
+S["PKG_CONFIG_LIBDIR"]=""
+S["PKG_CONFIG_PATH"]=""
 S["GACUTIL"]="/usr/bin/gacutil"
 S["ENABLE_RELEASE_FALSE"]="#"
 S["ENABLE_RELEASE_TRUE"]=""

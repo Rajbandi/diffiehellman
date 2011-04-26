@@ -4,6 +4,9 @@ AC_INIT([DiffieHellman], [0.1])
 AM_INIT_AUTOMAKE([foreign])
 AM_MAINTAINER_MODE
 
+dnl Version information
+MONO_REQUIRED_VERSION=2.6.0
+
 dnl Package information
 ASSEMBLY_RELEASE=1.0.0
 ASSEMBLY_BUILD=0
@@ -90,11 +93,14 @@ if test "x$GACUTIL" = "xno" ; then
         AC_MSG_ERROR([No gacutil tool found])
 fi
 
-
 dnl package checks, common for all configs
 
-dnl package checks, per config
+PKG_CHECK_MODULES(MONO, mono >= $MONO_REQUIRED_VERSION, has_mono="yes", has_mono="no")
+if test "x$has_mono" = "xno" ; then
+	AC_MSG_ERROR([Mono at version at least $MONO_REQUIRED_VERSION not found])
+fi
 
+dnl package checks, per config
 
 AC_CONFIG_FILES([
 src/AssemblyInfo.cs
