@@ -3,9 +3,12 @@ AC_PREREQ([2.54])
 AC_INIT([DiffieHellman], [0.1])
 AM_INIT_AUTOMAKE([foreign])
 AM_MAINTAINER_MODE
+AC_PROG_INSTALL
+
 
 dnl Version information
 MONO_REQUIRED_VERSION=2.6.0
+
 
 dnl Package information
 ASSEMBLY_RELEASE=1.0.0
@@ -59,14 +62,31 @@ SHAMROCK_EXPAND_LIBDIR
 SHAMROCK_EXPAND_BINDIR
 SHAMROCK_EXPAND_DATADIR
 
-AC_PROG_INSTALL
 
+dnl Mono existance check
+PKG_CHECK_MODULES(MONO, mono >= $MONO_REQUIRED_VERSION, has_mono="yes", has_mono="no")
+if test "x$has_mono" = "xno" ; then
+	AC_MSG_ERROR([Mono at version at least $MONO_REQUIRED_VERSION not found])
+fi
+
+
+dnl C# compiler checks
+CS="C#"
+if test "x$CSC" = "xno" ; then
+    AC_MSG_ERROR([No $CS compiler found])
+fi
+
+AC_SUBST(CSC)
+
+
+dnl 2.0 Compiler check
 AC_PATH_PROG(GMCS, gmcs, no)
 if test "x$GMCS" = "xno"; then
         AC_MSG_ERROR([gmcs Not found])
 fi
 
 
+dnl Debug enable check
 AC_ARG_ENABLE(debug,
 	AC_HELP_STRING([--enable-debug],
 		[Use 'DEBUG' Configuration [default=NO]]),
@@ -88,20 +108,21 @@ if test -z "$CONFIG_REQUESTED" ; then
 	enable_release=yes
 fi
 
+
+dnl Global Assembly Cache util check
 AC_PATH_PROG(GACUTIL, gacutil, no)
 if test "x$GACUTIL" = "xno" ; then
         AC_MSG_ERROR([No gacutil tool found])
 fi
 
+
 dnl package checks, common for all configs
 
-PKG_CHECK_MODULES(MONO, mono >= $MONO_REQUIRED_VERSION, has_mono="yes", has_mono="no")
-if test "x$has_mono" = "xno" ; then
-	AC_MSG_ERROR([Mono at version at least $MONO_REQUIRED_VERSION not found])
-fi
 
 dnl package checks, per config
 
+
+dnl Configuration files
 AC_CONFIG_FILES([
 src/AssemblyInfo.cs
 diffiehellman.pc
@@ -110,4 +131,15 @@ diffiehellman.spec
 
 ])
 
+
+dnl Output user info
 AC_OUTPUT
+
+echo ""
+echo "Configuration summary"
+echo "---------------------"
+echo ""
+echo "   * Installation prefix: $prefix"
+echo "   * compiler: $CSC"
+echo ""
+

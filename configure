@@ -555,16 +555,17 @@ PACKAGE_URL=''
 
 ac_subst_vars='LTLIBOBJS
 LIBOBJS
-MONO_LIBS
-MONO_CFLAGS
-PKG_CONFIG_LIBDIR
-PKG_CONFIG_PATH
 GACUTIL
 ENABLE_RELEASE_FALSE
 ENABLE_RELEASE_TRUE
 ENABLE_DEBUG_FALSE
 ENABLE_DEBUG_TRUE
 GMCS
+CSC
+MONO_LIBS
+MONO_CFLAGS
+PKG_CONFIG_LIBDIR
+PKG_CONFIG_PATH
 expanded_datadir
 expanded_bindir
 expanded_libdir
@@ -2256,7 +2257,10 @@ fi
 
 
 
+
+
 MONO_REQUIRED_VERSION=2.6.0
+
 
 ASSEMBLY_RELEASE=1.0.0
 ASSEMBLY_BUILD=0
@@ -2388,147 +2392,6 @@ fi
 
 
 
-
-
-
-# Extract the first word of "gmcs", so it can be a program name with args.
-set dummy gmcs; ac_word=$2
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
-$as_echo_n "checking for $ac_word... " >&6; }
-if test "${ac_cv_path_GMCS+set}" = set; then :
-  $as_echo_n "(cached) " >&6
-else
-  case $GMCS in
-  [\\/]* | ?:[\\/]*)
-  ac_cv_path_GMCS="$GMCS" # Let the user override the test with a path.
-  ;;
-  *)
-  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-    for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_path_GMCS="$as_dir/$ac_word$ac_exec_ext"
-    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-  done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_path_GMCS" && ac_cv_path_GMCS="no"
-  ;;
-esac
-fi
-GMCS=$ac_cv_path_GMCS
-if test -n "$GMCS"; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $GMCS" >&5
-$as_echo "$GMCS" >&6; }
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-fi
-
-
-if test "x$GMCS" = "xno"; then
-        as_fn_error $? "gmcs Not found" "$LINENO" 5
-fi
-
-
-# Check whether --enable-debug was given.
-if test "${enable_debug+set}" = set; then :
-  enableval=$enable_debug; enable_debug=yes
-else
-  enable_debug=no
-fi
-
- if test x$enable_debug = xyes; then
-  ENABLE_DEBUG_TRUE=
-  ENABLE_DEBUG_FALSE='#'
-else
-  ENABLE_DEBUG_TRUE='#'
-  ENABLE_DEBUG_FALSE=
-fi
-
-if test "x$enable_debug" = "xyes" ; then
-	CONFIG_REQUESTED="yes"
-fi
-# Check whether --enable-release was given.
-if test "${enable_release+set}" = set; then :
-  enableval=$enable_release; enable_release=yes
-else
-  enable_release=no
-fi
-
- if test x$enable_release = xyes; then
-  ENABLE_RELEASE_TRUE=
-  ENABLE_RELEASE_FALSE='#'
-else
-  ENABLE_RELEASE_TRUE='#'
-  ENABLE_RELEASE_FALSE=
-fi
-
-if test "x$enable_release" = "xyes" ; then
-	CONFIG_REQUESTED="yes"
-fi
-if test -z "$CONFIG_REQUESTED" ; then
-	 if true; then
-  ENABLE_RELEASE_TRUE=
-  ENABLE_RELEASE_FALSE='#'
-else
-  ENABLE_RELEASE_TRUE='#'
-  ENABLE_RELEASE_FALSE=
-fi
-
-	enable_release=yes
-fi
-
-# Extract the first word of "gacutil", so it can be a program name with args.
-set dummy gacutil; ac_word=$2
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
-$as_echo_n "checking for $ac_word... " >&6; }
-if test "${ac_cv_path_GACUTIL+set}" = set; then :
-  $as_echo_n "(cached) " >&6
-else
-  case $GACUTIL in
-  [\\/]* | ?:[\\/]*)
-  ac_cv_path_GACUTIL="$GACUTIL" # Let the user override the test with a path.
-  ;;
-  *)
-  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-    for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_path_GACUTIL="$as_dir/$ac_word$ac_exec_ext"
-    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-  done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_path_GACUTIL" && ac_cv_path_GACUTIL="no"
-  ;;
-esac
-fi
-GACUTIL=$ac_cv_path_GACUTIL
-if test -n "$GACUTIL"; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $GACUTIL" >&5
-$as_echo "$GACUTIL" >&6; }
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-fi
-
-
-if test "x$GACUTIL" = "xno" ; then
-        as_fn_error $? "No gacutil tool found" "$LINENO" 5
-fi
 
 
 
@@ -2724,7 +2587,161 @@ if test "x$has_mono" = "xno" ; then
 fi
 
 
+CS="C#"
+if test "x$CSC" = "xno" ; then
+    as_fn_error $? "No $CS compiler found" "$LINENO" 5
+fi
+
+
+
+
+# Extract the first word of "gmcs", so it can be a program name with args.
+set dummy gmcs; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if test "${ac_cv_path_GMCS+set}" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $GMCS in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_GMCS="$GMCS" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_path_GMCS="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  test -z "$ac_cv_path_GMCS" && ac_cv_path_GMCS="no"
+  ;;
+esac
+fi
+GMCS=$ac_cv_path_GMCS
+if test -n "$GMCS"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $GMCS" >&5
+$as_echo "$GMCS" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+if test "x$GMCS" = "xno"; then
+        as_fn_error $? "gmcs Not found" "$LINENO" 5
+fi
+
+
+# Check whether --enable-debug was given.
+if test "${enable_debug+set}" = set; then :
+  enableval=$enable_debug; enable_debug=yes
+else
+  enable_debug=no
+fi
+
+ if test x$enable_debug = xyes; then
+  ENABLE_DEBUG_TRUE=
+  ENABLE_DEBUG_FALSE='#'
+else
+  ENABLE_DEBUG_TRUE='#'
+  ENABLE_DEBUG_FALSE=
+fi
+
+if test "x$enable_debug" = "xyes" ; then
+	CONFIG_REQUESTED="yes"
+fi
+# Check whether --enable-release was given.
+if test "${enable_release+set}" = set; then :
+  enableval=$enable_release; enable_release=yes
+else
+  enable_release=no
+fi
+
+ if test x$enable_release = xyes; then
+  ENABLE_RELEASE_TRUE=
+  ENABLE_RELEASE_FALSE='#'
+else
+  ENABLE_RELEASE_TRUE='#'
+  ENABLE_RELEASE_FALSE=
+fi
+
+if test "x$enable_release" = "xyes" ; then
+	CONFIG_REQUESTED="yes"
+fi
+if test -z "$CONFIG_REQUESTED" ; then
+	 if true; then
+  ENABLE_RELEASE_TRUE=
+  ENABLE_RELEASE_FALSE='#'
+else
+  ENABLE_RELEASE_TRUE='#'
+  ENABLE_RELEASE_FALSE=
+fi
+
+	enable_release=yes
+fi
+
+
+# Extract the first word of "gacutil", so it can be a program name with args.
+set dummy gacutil; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if test "${ac_cv_path_GACUTIL+set}" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $GACUTIL in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_GACUTIL="$GACUTIL" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_path_GACUTIL="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  test -z "$ac_cv_path_GACUTIL" && ac_cv_path_GACUTIL="no"
+  ;;
+esac
+fi
+GACUTIL=$ac_cv_path_GACUTIL
+if test -n "$GACUTIL"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $GACUTIL" >&5
+$as_echo "$GACUTIL" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+if test "x$GACUTIL" = "xno" ; then
+        as_fn_error $? "No gacutil tool found" "$LINENO" 5
+fi
+
+
+
+
+
+
 ac_config_files="$ac_config_files src/AssemblyInfo.cs diffiehellman.pc Makefile diffiehellman.spec"
+
 
 
 cat >confcache <<\_ACEOF
@@ -3906,4 +3923,13 @@ if test -n "$ac_unrecognized_opts" && test "$enable_option_checking" != no; then
   { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: unrecognized options: $ac_unrecognized_opts" >&5
 $as_echo "$as_me: WARNING: unrecognized options: $ac_unrecognized_opts" >&2;}
 fi
+
+
+echo ""
+echo "Configuration summary"
+echo "---------------------"
+echo ""
+echo "   * Installation prefix: $prefix"
+echo "   * compiler: $CSC"
+echo ""
 
