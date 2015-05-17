@@ -1,3 +1,6 @@
+This package is unmaintained. I plan to remove it soon. If someone like it, please fork.
+==
+
 This package was originally provided by mentalis.org.
 
 The maintainer of the project on github.com is greubelm, and the author has
