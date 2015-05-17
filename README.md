@@ -8,9 +8,7 @@ no participation on mentalis.org nor vice versa.
 
 Here is the origin text from mentalis.org about the description of the package:
 
-Quote ==
-The cryptography classes of the .NET framework lack one crucial class: an
-implementation of the Diffie-Hellman key agreement algorithm. To fill this
-gap, we created a completely managed Diffie-Hellman implementation, based
-on mono::'s BigInteger class.
-==
+> The cryptography classes of the .NET framework lack one crucial class: an
+> implementation of the Diffie-Hellman key agreement algorithm. To fill this
+> gap, we created a completely managed Diffie-Hellman implementation, based
+> on mono's BigInteger class.
